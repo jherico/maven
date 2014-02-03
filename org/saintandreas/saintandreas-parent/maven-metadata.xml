@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.saintandreas</groupId>
+  <artifactId>saintandreas-parent</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20140203052017</lastUpdated>
+  </versioning>
+</metadata>
