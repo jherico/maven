@@ -1,17 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.saintandreas</groupId>
   <artifactId>saintandreas-parent</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-
-  <distributionManagement>
-    <repository>
-      <id>internal.repo</id>
-      <name>Temporary Staging Repository</name>
-      <url>file://${project.build.directory}/mvn-repo</url>
-    </repository>
-  </distributionManagement>
 
   <name>Saint Andreas Libraries</name>
 
@@ -48,7 +42,31 @@
     <tag>HEAD</tag>
   </scm>
 
-  
+  <repositories>
+    <repository>
+      <id>ec2</id>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+        <checksumPolicy>warn</checksumPolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+        <checksumPolicy>fail</checksumPolicy>
+      </snapshots>
+      <url>http://ec2.saintandreas.org/maven</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>ec2</id>
+      <url>scp://ec2.saintandreas.org/var/maven</url>
+    </repository>
+  </distributionManagement>
+
   <reporting>
     <plugins>
       <plugin>
@@ -56,7 +74,8 @@
         <artifactId>maven-project-info-reports-plugin</artifactId>
         <version>2.6</version>
         <configuration>
-          <dependencyLocationsEnabled>false</dependencyLocationsEnabled><!-- waiting for MPIR-267 -->
+          <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+          <!-- waiting for MPIR-267 -->
         </configuration>
         <reportSets>
           <reportSet>
@@ -83,7 +102,7 @@
       </plugin>
     </plugins>
   </reporting>
-  
+
   <properties>
     <slf4j.version>[1.7.5, )</slf4j.version>
     <lwjgl.version>[2.9.1, )</lwjgl.version>
@@ -105,35 +124,6 @@
     </plugins>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>site-maven-plugin</artifactId>
-          <configuration>
-            <message>Maven artifacts for ${project.version}</message>
-            <noJekyll>true</noJekyll>
-            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-            <branch>refs/heads/mvn-repo</branch>
-            <includes>
-              <include>**/*</include>
-            </includes>
-            <repositoryName>maven</repositoryName>
-            <repositoryOwner>jherico</repositoryOwner>
-          </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>site</goal>
-              </goals>
-              <phase>deploy</phase>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <configuration>
-            <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-          </configuration>
-        </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
@@ -231,4 +221,3 @@
     </dependencies>
   </dependencyManagement>
 </project>
-
