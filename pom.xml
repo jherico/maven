@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.saintandreas</groupId>
   <artifactId>saintandreas-parent</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Saint Andreas Libraries</name>
@@ -37,7 +37,6 @@
     <connection>scm:git:git://git@github.com/jherico/saintandreas-parent.git</connection>
     <developerConnection>scm:git:git://git@github.com/jherico/saintandreas-parent.git</developerConnection>
     <url>https://github.com/jherico/maven</url>
-    <tag>saintandreas-parent-1.0.3</tag>
   </scm>
 
   <repositories>
