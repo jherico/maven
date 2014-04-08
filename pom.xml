@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.saintandreas</groupId>
   <artifactId>saintandreas-parent</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
+  <version>2.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Saint Andreas Libraries</name>
@@ -41,7 +41,7 @@
 
   <repositories>
     <repository>
-      <id>ec2</id>
+      <id>saintandreas-org-mvn-repo</id>
       <releases>
         <enabled>true</enabled>
         <updatePolicy>always</updatePolicy>
@@ -52,15 +52,15 @@
         <updatePolicy>never</updatePolicy>
         <checksumPolicy>fail</checksumPolicy>
       </snapshots>
-      <url>http://ec2.saintandreas.org/maven</url>
+      <url>http://maven.saintandreas.org/maven</url>
       <layout>default</layout>
     </repository>
   </repositories>
 
   <distributionManagement>
     <repository>
-      <id>ec2</id>
-      <url>scp://ec2.saintandreas.org/var/maven</url>
+      <id>saintandreas-org-mvn-repo</id>
+      <url>scpexe://maven.saintandreas.org/var/maven</url>
     </repository>
   </distributionManagement>
 
@@ -113,8 +113,7 @@
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh</artifactId>
-        <version>2.3</version>
+        <artifactId>wagon-ssh-external</artifactId>
       </extension>
     </extensions>
     <plugins>
@@ -131,8 +130,8 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <source>1.7</source>
-            <target>1.7</target>
+            <source>1.8</source>
+            <target>1.8</target>
           </configuration>
         </plugin>
         <plugin>
