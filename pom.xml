@@ -1,17 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
   <groupId>org.saintandreas</groupId>
-  <artifactId>saintandreas-parent</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <artifactId>parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Saint Andreas Libraries</name>
+  <description>Saint Andreas libraries contain math, rendering, and VR facilities</description>
 
-  <description>Saint Andreas libraries contain math, 
-      rendering and XBMC RPC client facilities</description>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
   <url>http://rifty-business.blogspot.com/</url>
-  <inceptionYear>2002</inceptionYear>
-
+  <inceptionYear>2013</inceptionYear>
   <developers>
     <developer>
       <id>bdavis</id>
@@ -38,31 +49,6 @@
     <developerConnection>scm:git:git@github.com:jherico/saintandreas-parent.git</developerConnection>
     <url>https://github.com/jherico/maven</url>
   </scm>
-
-  <repositories>
-    <repository>
-      <id>saintandreas-org-mvn-repo</id>
-      <releases>
-        <enabled>true</enabled>
-        <updatePolicy>always</updatePolicy>
-        <checksumPolicy>warn</checksumPolicy>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-        <updatePolicy>never</updatePolicy>
-        <checksumPolicy>fail</checksumPolicy>
-      </snapshots>
-      <url>http://maven.saintandreas.org/maven</url>
-      <layout>default</layout>
-    </repository>
-  </repositories>
-
-  <distributionManagement>
-    <repository>
-      <id>saintandreas-org-mvn-repo</id>
-      <url>scpexe://maven.saintandreas.org/var/maven</url>
-    </repository>
-  </distributionManagement>
 
   <reporting>
     <plugins>
@@ -101,55 +87,14 @@
   </reporting>
 
   <properties>
-    <slf4j.version>[1.7.5, )</slf4j.version>
-    <lwjgl.version>[2.9.1, )</lwjgl.version>
+    <slf4j.version>[1.7.5, 1.8)</slf4j.version>
+    <lwjgl.version>[2.9.1, 3)</lwjgl.version>
+    <jackson.version>[2.3.3, 3)</jackson.version>
     <natives>${basedir}/target/natives/</natives>
     <release.natives>natives/</release.natives>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <github.global.server>github</github.global.server>
   </properties>
-
-  <build>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh-external</artifactId>
-      </extension>
-    </extensions>
-    <plugins>
-      <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>com.googlecode.mavennatives</groupId>
-          <artifactId>maven-nativedependencies-plugin</artifactId>
-          <executions>
-            <execution>
-              <id>unpacknatives</id>
-              <phase>generate-resources</phase>
-              <goals>
-                <goal>copy</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
 
   <dependencyManagement>
     <dependencies>
@@ -159,9 +104,24 @@
         <version>[16,)</version>
       </dependency>
       <dependency>
-        <groupId>javax.measure</groupId>
-        <artifactId>jsr-275</artifactId>
-        <version>[1,)</version>
+        <groupId>org.jscience</groupId>
+        <artifactId>jscience</artifactId>
+        <version>[4.3.1, 5)</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>[2.3, 3)</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
@@ -181,24 +141,13 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>[16,)</version>
-      </dependency>
-      <dependency>
-        <groupId>com.codeminders</groupId>
-        <artifactId>hidapi</artifactId>
-        <version>[1.1,)</version>
-      </dependency>
-      <dependency>
-        <groupId>org.codehaus.jackson</groupId>
-        <artifactId>jackson-mapper-asl</artifactId>
-        <version>[1.9, )</version>
+        <version>[17,)</version>
       </dependency>
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
         <version>[4, )</version>
       </dependency>
-
       <dependency>
         <groupId>org.lwjgl.lwjgl</groupId>
         <artifactId>lwjgl</artifactId>
@@ -223,4 +172,61 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>2.3</version>
+      </extension>
+    </extensions>
+    <plugins>
+      <plugin>
+        <groupId>com.github.github</groupId>
+        <artifactId>site-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.googlecode.mavennatives</groupId>
+          <artifactId>maven-nativedependencies-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>unpacknatives</id>
+              <phase>generate-resources</phase>
+              <goals>
+                <goal>copy</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
