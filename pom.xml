@@ -7,7 +7,7 @@
   </parent>
   <groupId>org.saintandreas</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Saint Andreas Libraries</name>
@@ -47,7 +47,7 @@
   <scm>
     <connection>scm:git:https://github.com/jherico/saintandreas-parent.git</connection>
     <developerConnection>scm:git:git@github.com:jherico/saintandreas-parent.git</developerConnection>
-    <url>https://github.com/jherico/maven</url>
+    <url>https://github.com/jherico/saintandreas-parent</url>
   </scm>
 
   <reporting>
@@ -101,7 +101,7 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>[17,)</version>
+        <version>17.0</version>
       </dependency>
       <dependency>
         <groupId>org.jscience</groupId>
