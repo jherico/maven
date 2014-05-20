@@ -7,11 +7,11 @@
   </parent>
   <groupId>org.saintandreas</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Saint Andreas Libraries</name>
-  <description>Saint Andreas libraries contain math, rendering, and VR facilities</description>
+  <description>Saint Andreas libraries parent pom</description>
 
   <licenses>
     <license>
@@ -101,7 +101,7 @@
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>[16,)</version>
+        <version>[17,)</version>
       </dependency>
       <dependency>
         <groupId>org.jscience</groupId>
@@ -139,11 +139,6 @@
         <version>[3,)</version>
       </dependency>
       <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>[17,)</version>
-      </dependency>
-      <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpclient</artifactId>
         <version>[4, )</version>
@@ -174,18 +169,7 @@
   </dependencyManagement>
 
   <build>
-    <extensions>
-      <extension>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-ssh</artifactId>
-        <version>2.3</version>
-      </extension>
-    </extensions>
     <plugins>
-      <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-gpg-plugin</artifactId>
@@ -196,6 +180,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
+          <version>1.5</version>
           <executions>
             <execution>
               <id>sign-artifacts</id>
